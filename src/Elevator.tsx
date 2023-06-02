@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 const Elevator: React.FC = () => {
 
   return (
-    <div>[]</div>
+    <div>
+      <p>[]</p>
+    </div>
   );
 };
 

@@ -7,9 +7,9 @@ function App() {
   return (
     <div className="App">
       <h1>Ellevator</h1>
-      <Floor />
-      <InsideElevator totalFloors={10} />
-      <Elevator />
+      <Floor/>
+      <InsideElevator totalFloors={10}/>
+      <Elevator/>
     </div>
   );
 }
