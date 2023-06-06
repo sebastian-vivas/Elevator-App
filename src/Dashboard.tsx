@@ -90,6 +90,22 @@ const Dashboard: React.FC<{ totalNumberFloors: number }> = (props) => {
   };
 
   /*
+   * Show an icon of a person exiting.
+   * Remove the person icon.
+   * Set the next floor as the next item in the the elevator request array.
+   * Remove selected floor item from the queue array.
+   */
+  const makePeopleExit = (selArr: number[], reqArr: number[]) => {
+    setIsElevatorOpen(false);
+    setArePeopleExiting(true);
+    setTimeout(() => {
+      setArePeopleExiting(false);
+    }, 1000);
+    setNextFloor(reqArr[0]);
+    selArr.shift();
+  };
+
+  /*
    * Check to see if someone selected a floor that is in between the requested floors.
    * If so, remove that item from the selected floor queue array.
    * Show an icon of a person exiting.
@@ -97,10 +113,24 @@ const Dashboard: React.FC<{ totalNumberFloors: number }> = (props) => {
    * Remove the person icon.
    */
   const checkInBetweenFloors = (selArr: number[], reqArr: number[]) => {
-    if (selArr[0] > reqArr[0]) {
+    if (selArr[0] < reqArr[0] && isAscending) {
+      setNextFloor(selArr[0]);
+      if (currentFloor === selArr[0]) {
+        makePeopleExit(selArr, reqArr);
+      }
+    }
+    if (selArr[0] > reqArr[0] && isDescending) {
+      setNextFloor(selArr[0]);
+      if (currentFloor === selArr[0]) {
+        makePeopleExit(selArr, reqArr);
+      }
+    }
+    if (reqArr[0] < reqArr.reverse()[0] && isDescending) {
+      setRequestDownQueue(removeDuplicatesandSort(requestDownQueue).reverse());
       setNextFloor(reqArr[0]);
     }
-    if (selArr[0] < reqArr[0]) {
+    if (selArr[0] < reqArr[0] && isDescending) {
+      setRequestDownQueue(removeDuplicatesandSort(requestDownQueue).reverse());
       setNextFloor(selArr[0]);
     }
   };
@@ -114,13 +144,7 @@ const Dashboard: React.FC<{ totalNumberFloors: number }> = (props) => {
     if (reqArr.length === 0 && selArr.length >= 1) {
       setNextFloor(selArr[0]);
       if (currentFloor === selArr[0]) {
-        setIsElevatorOpen(false);
-        setArePeopleExiting(true);
-        setTimeout(() => {
-          setArePeopleExiting(false);
-        }, 1000);
-        setIsCounterActive(true);
-        selArr.shift();
+        makePeopleExit(selArr, reqArr);
         if (isDescending && selArr.length === 0) setIsDescending(false);
         if (isAscending && selArr.length === 0) setIsAscending(false);
       }
