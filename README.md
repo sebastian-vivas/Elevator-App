@@ -4,6 +4,10 @@
 npm start
 ```
 
+```zsh
+npm install
+```
+
 ## The Elevator Challenge
 
 Consider the problem of programming an elevator in a ten floor building with a single elevator. Each floor has two buttons to call the elevator to the floor to take you up or down.
