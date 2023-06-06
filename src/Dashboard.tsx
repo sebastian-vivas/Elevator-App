@@ -125,14 +125,14 @@ const Dashboard: React.FC<{ totalNumberFloors: number }> = (props) => {
         makePeopleExit(selArr, reqArr);
       }
     }
-    if (reqArr[0] < reqArr.reverse()[0] && isDescending) {
-      setRequestDownQueue(removeDuplicatesandSort(requestDownQueue).reverse());
-      setNextFloor(reqArr[0]);
-    }
-    if (selArr[0] < reqArr[0] && isDescending) {
-      setRequestDownQueue(removeDuplicatesandSort(requestDownQueue).reverse());
-      setNextFloor(selArr[0]);
-    }
+    // if (selArr[0] > reqArr.reverse()[0] && isAscending) {
+    //   setRequestDownQueue(removeDuplicatesandSort(requestDownQueue).reverse());
+    //   setNextFloor(reqArr[0]);
+    // }
+    // if (selArr[0] < reqArr[0] && isDescending) {
+    //   setRequestDownQueue(removeDuplicatesandSort(requestDownQueue).reverse());
+    //   setNextFloor(reqArr[0]);
+    // }
   };
 
   /*
