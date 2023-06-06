@@ -125,8 +125,11 @@ const Dashboard: React.FC<{ totalNumberFloors: number }> = (props) => {
         makePeopleExit(selArr, reqArr);
       }
     }
-    // if (selArr[0] > reqArr.reverse()[0] && isAscending) {
-    //   setRequestDownQueue(removeDuplicatesandSort(requestDownQueue).reverse());
+    /*
+     * Lmao I forgot we changed these during the interview and now I forget what I did to make it work.
+     */
+    // if (reqArr[0] > reqArr.reverse()[0] && isDescending) {
+    //   setRequestUpQueue(removeDuplicatesandSort(requestDownQueue).reverse());
     //   setNextFloor(reqArr[0]);
     // }
     // if (selArr[0] < reqArr[0] && isDescending) {
