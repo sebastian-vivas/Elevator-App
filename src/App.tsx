@@ -1,14 +1,7 @@
-import React from 'react';
-// import InsideElevator from './InsideElevator'
-import Floor from './Floor'
+import Dashboard from "./Dashboard";
 
 function App() {
-  return (
-    <div className="App">
-      <Floor totalNumberFloors={10}/>
-      {/* <InsideElevator totalFloors={10}/> */}
-    </div>
-  );
+  return <Dashboard totalNumberFloors={10} />;
 }
 
 export default App;

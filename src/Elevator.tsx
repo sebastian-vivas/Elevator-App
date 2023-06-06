@@ -2,12 +2,17 @@ import React from "react";
 import "./styles.css";
 
 const Elevator: React.FC<{
-  requestedFloor: number;
+  arePeopleExiting: boolean;
+  currentFloor: number;
   totalNumberFloors: number;
 }> = (props) => {
-  const { requestedFloor, totalNumberFloors } = props;
+  const { arePeopleExiting, currentFloor, totalNumberFloors } = props;
   const elevators = [];
 
+  /*
+   * Loop through `totalNumberFloors` and push corresponding key/value pairs to the `elevators` object.
+   * This will populate the total number of buttons dynamically.
+   */
   for (let i = totalNumberFloors; i >= 1; i--) {
     const elevatorNumber: number = i;
     const elevatorKey: string = `Floor ${elevatorNumber}`;
@@ -15,24 +20,34 @@ const Elevator: React.FC<{
   }
 
   return (
-    <div className="item">
+    <section className="item">
+      {/*
+       * This will populate the total number of floors dynamically by mapping each key/value to a section.
+       */}
       {elevators.map((elevator) => (
-        <>
-          {requestedFloor !== elevator.number && (
-            <h3 className="elevator">{elevator.key}</h3>
+        <section key={elevator.key}>
+          {currentFloor !== elevator.number && (
+            <h3 className="floorFont margin">{elevator.key}</h3>
           )}
-          {requestedFloor === elevator.number && (
-            <h3 className="elevator red">{elevator.key}</h3>
+          {currentFloor === elevator.number && (
+            <h3 className="elevatorHeader">{elevator.key}</h3>
           )}
-          {requestedFloor === elevator.number && (
+          {currentFloor === elevator.number && (
             <img
               src={process.env.PUBLIC_URL + "/assets/elevator.png"}
-              alt="Elevator icon"
+              alt="An Elevator"
             />
           )}
-        </>
+          {currentFloor === elevator.number && arePeopleExiting && (
+            <img
+              src={process.env.PUBLIC_URL + "/assets/running.png"}
+              className="person"
+              alt="A person walking out of an elevator"
+            />
+          )}
+        </section>
       ))}
-    </div>
+    </section>
   );
 };
 
