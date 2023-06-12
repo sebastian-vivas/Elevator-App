@@ -1,4 +1,4 @@
-# This is a functioning elevator program
+## This is a functioning elevator program. 
 
 ## Get Started
 ```zsh
